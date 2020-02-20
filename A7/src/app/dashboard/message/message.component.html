@@ -1,0 +1,82 @@
+<div class="clr-row errybody">
+  <div class="clr-col-3" style="margin: 0; padding: 0;">
+        <div class="card" style="margin: 0; padding: 0; min-height: 45vh;">
+            <div class="card-header text-white">
+                Messages
+            </div>
+            <div class="card-block" style="margin: 0; padding: 0;">
+                <div class="card-title">
+                </div>
+                <div class="card-text">
+                   <ul *ngFor="let msg of messages; let i = index" >
+                     <li  [class.active]="msg == message" (click)="changeCategory(msg)"  >{{msg.subject || 'No messages yet'}}</li>
+                 
+                   </ul>
+                </div>
+            </div>
+          
+        </div>
+      
+  </div>
+  <div class="clr-col-6 body">
+      <div class="clr-form-control" *ngIf="!showFromTo">
+          <label for="basic" class="clr-control-label">To: </label>
+          <div class="clr-control-container">
+            <div class="clr-input-wrapper">
+              <input  [(ngModel)]="message.to" type="text" id="basic" placeholder="Type user E-Id" class="clr-input text-white" style="font-size: 14px; font-weight: 700">
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+          </div>
+        </div>
+        <div class="clr-form-control" *ngIf="showFromTo">
+            <label for="basic" class="clr-control-label">From: </label>
+            <div class="clr-control-container">
+              <div class="clr-input-wrapper">
+                <input  [(ngModel)]="message.from" type="text" id="basic" placeholder="Type user E-Id" class="clr-input">
+                <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+              </div>
+            </div>
+          </div>
+      <div class="clr-form-control mb-1">
+          <label for="basic" class="clr-control-label">Subject: </label>
+          <div class="clr-control-container">
+            <div class="clr-input-wrapper">
+              <input  [(ngModel)]="message.subject" type="text" id="basic" placeholder="Message subject" class="clr-input" style="font-size: 14px;">
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+          </div>
+        </div>
+      <app-ngx-editor class="text-white" [(ngModel)]="message.message" [placeholder]="'Type your Message'" [spellcheck]="true"  [config]="{minHeight: '20vh', toolbar: [ ['undo', 'redo'], 
+      ['link', 'image']]}" ></app-ngx-editor>
+      <button class="btn btn-outline " (click)="sendMessage()"><clr-icon shape="play" size="16" ></clr-icon> Send</button>
+      <button class="btn btn-danger-outline" routerLink="../">Discard</button>
+  
+    </div>
+  <div class="clr-col-3">
+      
+      <label for="typeahead-basic">Search for members:</label>
+      <input id="typeahead-basic" type="text" class="form-control text-dark"
+      #instance="ngbTypeahead"
+      (focus)="focus$.next($event.target.value)" [ngbTypeahead]="search" [resultFormatter]="formatter"/>
+      <!-- <hr> -->
+      <!-- <pre>Model: {{ user | json }}</pre> -->
+      <div *ngFor="let _user of _users" class="alert alert-primary" role="alert" >
+          <div class="alert-items" style="padding: 3px; cursor: pointer;" (click)="selectedItem(_user.vit_id)">
+              <div class="alert-item"  >
+              
+                  <span class="alert-text">{{_user.firstname}} {{_user.lastname}} ,{{_user.vit_id}}, City: {{_user.city}}</span>
+                  <div class="alert-actions">
+                      <div class="alert-action dropdown bottom-right ">
+                          <button class="dropdown-toggle">
+                              <clr-icon shape="chat-bubble" size="16"></clr-icon>
+                          </button>
+                  
+                      </div>
+                  </div>
+              </div>
+          </div>
+    
+      </div>
+     
+  </div>
+</div>

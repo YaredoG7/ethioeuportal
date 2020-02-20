@@ -1,0 +1,186 @@
+<div class="login-wrapper">
+  <form class="login" #login="ngForm" style="background: linear-gradient(to right, #414345, #232526);">
+      <section class="title  text-white">
+          <h3 class="welcome text-white" style="font-weight: 700; font-size: 36px;">Ethio-EU PORTAL <br>
+            <span style="color: rgb(240, 240, 240); font-size: 18px;">A new option for Graduates </span>
+          </h3>
+           <br>
+          ኢት-ኢዩ ጶርታል <br>
+          <span style="color: rgb(240, 239, 239); font-size: 18px;">አዲስ አማራጭ ለተመራቂዎች</span>
+          <p class="hint " style="color: rgb(228, 227, 227); font-size: 17px;">Use your Email to sign in or create account to explore your options.</p>
+      </section>
+      <div class="login-group" style="background: none">
+
+          <clr-input-container>
+              <label class="clr-sr-only">Email</label>
+              <input type="text" required   name="username" clrInput class="text-white" placeholder="Username" [(ngModel)]="_u.email"/>
+          </clr-input-container>
+          <clr-password-container>
+              <label class="clr-sr-only">Password</label>
+              <input type="password" required name="password" class="text-white" clrPassword placeholder="Password" [(ngModel)]="_u.password"/>
+          </clr-password-container>
+          <clr-checkbox-wrapper>
+              <label>Remember me</label>
+              <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="rememberMe"/>
+          </clr-checkbox-wrapper>
+          <div class="error">
+              Invalid user name or password
+          </div>
+      </div>
+      <div class="sections text-white" style="background: none">
+            <button type="submit" class="btn btn-primary" (click)="loginUser(login.valid)">NEXT</button>
+            <a (click)="second = true" class="signup">Create new account</a>
+            <a (click)="basic = true" class="signup">Forgot Password</a>
+      </div>
+     
+  </form>
+</div>
+
+<clr-modal [(clrModalOpen)]="basic">
+        <h3 class="modal-title">Portal Account Password Reset</h3>
+        <div class="modal-body">
+
+                      <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
+                            <div *ngIf="reset">
+                                    <section>Get Access Code</section>
+                                    <div >
+                                      <clr-input-container>
+                                        <label>Email</label>
+                                        <input clrInput required name="acc_email" [(ngModel)]="access_email"/>
+                                        <clr-control-error *clrIfError="'required'">Email is required</clr-control-error>
+                                      </clr-input-container>
+                                      <button type="button" class="btn btn-outline mt-1" (click)="sendAccessCode()">Next</button>
+                                    </div>
+                            </div>
+                            <div *ngIf="!reset" ngModelGroup="contact" >
+                                    <section>Enter Access Code</section>
+                                    <div >
+                                            <clr-input-container>
+                                              <label class="text-primary">Access Code</label>
+                                              <input type="number" clrInput required name="acc_email" [(ngModel)]="reset_password.access_code"/>
+                                              <clr-control-error *clrIfError="'required'">Access code is required</clr-control-error>
+                                            </clr-input-container>
+                                            <clr-input-container>
+                                            <label class="text-primary">New Password</label>
+                                            <input clrInput required name="acc_email" [(ngModel)]="reset_password.password"/>
+                                            <clr-control-error *clrIfError="'required'">New password is required</clr-control-error>
+                                            </clr-input-container>
+                                            <button type="button" class="btn btn-outline mt-1" (click)="VerifyAccessCode()">Update</button>
+                                          </div>
+                                  </div>
+                          </form>
+
+
+        </div>
+    </clr-modal>
+
+
+<clr-wizard #wizardlg [(clrWizardOpen)]="second" clrWizardSize="lg">
+    <clr-wizard-title>Ethio-EU Portal Account Setup</clr-wizard-title>
+  
+    <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+     <!-- <clr-wizard-button *ngIf="login.valid" [type]="'next'">Next</clr-wizard-button> -->
+     <clr-wizard-button *ngIf="!showRegi" [type]="'next'">Next</clr-wizard-button>
+     <clr-wizard-button *ngIf="showRegi" class="btn btn-primary" (click)="registerUser()" >Register</clr-wizard-button>
+    
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Your Profile</ng-template>
+        <div class="card-block">
+          <div class="card-text sections">
+            <section>
+              <form #login1="ngForm">
+                <clr-input-container>
+                    <input clrInput required  type="text" placeholder="Enter first name"  [(ngModel)]="user.firstname" name="barcodeid"  />
+                    <input clrInput required type="text" placeholder="Enter last name" [(ngModel)]="user.lastname" name="prodname"/>
+
+                  </clr-input-container>
+                  <clr-input-container>
+                  </clr-input-container>
+                  <clr-input-container>
+                      <label>Address</label>
+                      <input clrInput required type="text" [(ngModel)]="user.address.city"   name="quant1" placeholder="city"  class="mr-2"/>
+                      <input clrInput required type="text"  [(ngModel)]="user.address.country"    name="quant2" placeholder="zone/kebele/woreda" />
+                    </clr-input-container>
+                    <clr-input-container>
+                      <input clrInput required type="text" [(ngModel)]="user.address.postcode"     name="quant1" placeholder="country"  class="mr-2"/>
+                      <input clrInput required type="text"  [(ngModel)]="user.address.house_num"     name="quant2" placeholder="house #" />
+                    </clr-input-container>
+  
+                    <clr-input-container>
+                      <input clrInput required type="text" placeholder="Enter email address" [(ngModel)]="user.email" name="email"  />
+                    </clr-input-container>
+                    <clr-password-container>
+                        <input type="password" required name="password" clrPassword placeholder="Password" [(ngModel)]="user.password"/>
+                    </clr-password-container>
+              <div class="ite">
+                  <clr-input-container>
+                      <input clrInput required type="text" placeholder="Enter phone number"  [(ngModel)]="user.phone" name="phone"  />
+                    </clr-input-container>
+                      <clr-select-container>
+                        <label>Education Level</label>
+                          <select clrSelect name="type" [(ngModel)]="user.education_level" name="pay" >
+                              <option >Preparatory</option>
+                              <option >BSc Degree Holder</option>
+                              <option >MSc Degree Holder</option>
+                          </select>
+                      </clr-select-container>
+              </div>
+                  </form>
+            </section>
+          </div>
+        </div>
+    </clr-wizard-page>
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Account type</ng-template>
+        <clr-select-container class="mt-1">
+            <label>Select a type of account you would like to have on the portal</label>
+            <select clrSelect name="type" [(ngModel)]="user.role">
+              <option value="SCLR">Scholarship Applicant</option>
+              <option value="GST">Guest</option>
+              <option value="CLIT">Company</option>
+               <option value="CPA">CPA</option>
+            </select>
+        </clr-select-container>
+      </clr-wizard-page>  
+    <clr-wizard-page class="note">
+        <ng-template clrPageTitle>Member Reminder</ng-template>
+      
+        <section class="pl-1 pr-1 ">
+          For Scholarship applicants you have to provide a proof or source of your first semester payment.  Be-aware of how you will make payment once you are accepted, 
+          As it might not be easy to find dollar in ethiopia (even on the black market) it is advised for
+          applicants to find someone aborad to pay for them, to have a fast and effective process.
+        </section>
+        <hr>
+        <section class=" pl-1 pr-1 ">
+            አመልካች ከ ዩኒቨርስቲው ተቀባይነት አንዳገኘ ከፍያ መፈፀሚያ ሁለት መንገዶች ይኖሩታል: 
+           <ul>
+             <li> ከፍያ ከዉጭ ማስከፈል ምትችሉ ኦንላይን በ PAYPAL, VISA CARD ወይም MASTER CARD (ፈጣን ፕሮሰስ)
+                </li>
+  
+                <li>
+                  
+                  የኢትዮጵያ ንግድ ባንክ (ዉስን ሰው ብቻ)
+                </li>
+           </ul>
+        </section>
+        <clr-select-container (change)="showRegi=true">
+            <select clrSelect name="type" [(ngModel)]="user.payment" name="pay" >
+                <option value="etb">Ethiopian Neged Bank</option>
+                <option value="eur">Abroad (EU, US, UK...)</option>
+            </select>
+        </clr-select-container>
+  
+        
+        <clr-select-container (change)="showRegi=true">
+            <label>Company</label>
+            <select clrSelect name="type" [(ngModel)]="user.company" name="pay" >
+                <option>Yes, Invoice required</option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </clr-select-container>
+    
+
+    </clr-wizard-page>
+  </clr-wizard>

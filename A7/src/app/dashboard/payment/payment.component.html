@@ -1,0 +1,501 @@
+<h5>
+  Application payment status
+</h5>
+<hr />
+<div *ngIf="!showEticket" class="payment">
+  <!--   <p style="font-size: 18px; margin-bottom: 10px;">
+      The following payments has to be made by the applicant.
+  </p> -->
+  <ul class="list">
+    <li class="mb-1">Processing Fee</li>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Type</th>
+          <th>Amount</th>
+          <th>Number of university(s)</th>
+          <th>Description</th>
+          <th>
+            Payment <br />
+            (status)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">Application fee</td>
+          <td>
+            {{ proccessing_fee }} Br <br />
+          </td>
+          <td>
+            2
+          </td>
+          <td>You will pick two universities to apply</td>
+
+          <td>
+            <a>{{ status }}</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">Application fee</td>
+          <td>
+            {{ proccessing_fee_plus }} Br <br />
+          </td>
+          <td>
+            3
+          </td>
+          <td>
+            You will pick two universities to apply <br />
+            + 1 university, <br />
+            + 1 motivation letter
+          </td>
+
+          <td>
+            <a>{{ status }}</a>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button
+              class="btn btn-outline-primary pl-2 pr-2"
+              (click)="lgOpen = true"
+            >
+              Pay
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <li class="mt-1 mb-1">Payment On Acceptance</li>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="left">Type</th>
+          <th>Amount</th>
+          <th>Number</th>
+          <th>Description</th>
+          <th>
+            Payment <br />
+            (status)
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="left">Tuition fee</td>
+          <td>
+            58,000 Br - 90,000 Br <br />
+            (€ 1,700 - € 2,500)
+          </td>
+          <td>
+            1
+          </td>
+          <td>Per semester</td>
+          <td>
+            <a>After Acceptance</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">Ticket</td>
+          <td>
+            14,000 Br <br />
+            (€ 400)
+          </td>
+          <td>
+            1
+          </td>
+          <td>From ADD to Destination EU city</td>
+          <td>
+            <a>Airlines</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="left">Ticket - 2</td>
+          <td>
+            400 Br <br />
+            (€ 10)
+          </td>
+          <td>
+            1
+          </td>
+          <td>From the captial to city of the university: Bus, Train</td>
+
+          <td>
+            <a>After Acceptance</a>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button disabled class="btn btn-outline-primary pl-2 pr-2">
+              Pay
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <span style="color: red; font-weight:700">Note:</span> This is an
+      estimated cost per person, the exact amount might vary within the range.
+      We will message you on your account to the successful candidate.
+    </p>
+  </ul>
+</div>
+
+<div class="tim">
+  <p>Payment for orders, other applicants and other services </p>
+</div>
+
+
+<clr-wizard #wizardlg [(clrWizardOpen)]="lgOpen" clrWizardSize="lg">
+  <clr-wizard-title>Processing Payment</clr-wizard-title>
+
+  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+  <clr-wizard-button (click)="calculateTotal()" [type]="'next'"
+    >Next</clr-wizard-button
+  >
+
+  <ng-container *ngIf="!showEticket">
+      <clr-wizard-page >
+          <ng-template clrPageTitle>Select number of university</ng-template>
+          <div class="clr-form-control mt-2">
+            <label for="select-full" class="clr-control-label text-primary">
+              <clr-icon shape="bank" size="36"></clr-icon
+            ></label>
+            <div class="clr-control-container mt-1">
+              <div class="clr-select-wrapper" >
+                <select [(ngModel)]="uniNum" (change)="calculateTotal()" id="select-full" class="clr-select">
+                  <option value="false">Two</option>
+                  <option value="true">Three</option>
+                </select>
+                <clr-icon
+                  class="clr-validate-icon"
+                  shape="exclamation-circle"
+                ></clr-icon>
+              </div>
+              <span class="clr-subtext mt-1"
+                >By default an applicant is applying to two universities assumuning
+                you have a complete profile</span
+              >
+            </div>
+          </div>
+        </clr-wizard-page>
+      
+        <clr-wizard-page >
+          <ng-template clrPageTitle>Motivation letter</ng-template>
+          <div class="mt-2">
+            <section class="text-warning">
+              <clr-icon size="36" shape="lightbulb"></clr-icon>
+            </section>
+          </div>
+          <div class="clr-form-control">
+            <div class="clr-control-container">
+              <section style="font-size: 12px;" class="text-secondary">
+                We can create an attractive and standard motivation letter, that will
+                have to be approved by you.
+                <br />If you select this option you will have to answer a few
+                questions depending on the application. e.g. about the course you will
+                take, pervious thesis work and interests. As per the education level.
+              </section>
+              <br />
+              <div class="clr-select-wrapper">
+                <section style="font-size: 12px;" class="text-primary">
+                  Do you want us to create your motivation letter ?
+                </section>
+                <select
+                  [(ngModel)]="mtvLetter"
+                  name="letterMtv"
+                  id="select-full"
+                  class="clr-select"
+                  (change)="calculateTotal()"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+                <clr-icon
+                  class="clr-validate-icon"
+                  shape="exclamation-circle"
+                ></clr-icon>
+              </div>
+              <br />
+            </div>
+          </div>
+        </clr-wizard-page>
+
+        <clr-wizard-page>
+            <ng-template clrPageTitle>E-receipt</ng-template>
+            <div class="pay">
+              <div class="card pl-1">
+                <div class="tick">
+                  <label
+                    ><clr-icon shape="e-check" size="16"></clr-icon> Applicant ID</label
+                  >
+                  <h5>{{ user.vit_id }}</h5>
+                </div>
+                <div class="scholar">
+                  <div class="tick">
+                    <label>
+                      <clr-icon shape="tag" size="16"></clr-icon> Add University</label
+                    >
+                    <h5>{{ uniNum }}</h5>
+                  </div>
+                  <div class="tick">
+                    <label>
+                      <clr-icon shape="tag" size="16"></clr-icon> Motivation
+                      letter</label
+                    >
+                    <h5>{{ mtvLetter }}</h5>
+                  </div>
+                </div>
+                <div class="tick">
+                  <label>
+                    <clr-icon shape="success-standard" size="16"></clr-icon> Total
+                    amount</label
+                  >
+                  <h5>{{ totalPay + "Birr" }}</h5>
+                </div>
+        
+                <clr-select-container style="margin:0; padding:0;">
+                  <label
+                    ><clr-icon shape="bank" size="16"></clr-icon> Bank Transfer</label
+                  >
+                  <select
+                    #bank
+                    clrSelect
+                    name="options"
+                    [(ngModel)]="ticket.bank"
+                    required
+                  >
+                    <option value="ETB">Commercial Bank of Ethiopia</option>
+                    <option value="EUR">International Bank Account</option>
+                  </select>
+                  <clr-control-error>Required!</clr-control-error>
+                </clr-select-container>
+        
+                <div *ngIf="bank.value === 'ETB'">
+                  <clr-control-helper>
+                    Payments made in Commercial Bank of Ethiopia you have to upload you
+                    receipt that shows you paid to the account number below
+                    successfully. Make sure to add your Applicant ID as a message when
+                    sending payment.
+                    <br />
+                    የኢትዮጵያ ንግድ ባንክ አካውንት ቁጥራችንን በመጠቅም (ታች ያለው) ፕሮሰሱን ማስጀመሪያ ክፍያዉን ከመለያ
+                    ቁጥራችሁ ጋር እንድ መልክት አብረው ይላኩ። የሪሲቱን ፎቶ አፕሎድ በማድረግ ያጠናቁ።
+                  </clr-control-helper>
+                  <clr-input-container>
+                    <label>
+                      <clr-icon shape="lock" size="16"></clr-icon> Account Number</label
+                    >
+                    <input clrInput readonly name="input1" [(ngModel)]="CBE" />
+                  </clr-input-container>
+                </div>
+                <div *ngIf="bank.value === 'EUR'">
+                  <clr-control-helper>
+                    For paymnets using IBAN number, no need for uploading receipt. But
+                    your Applicant ID should be commented.
+                  </clr-control-helper>
+                  <clr-input-container>
+                    <label>
+                      <clr-icon shape="lock" size="16"></clr-icon> Account Number</label
+                    >
+                    <input clrInput readonly name="input2" [(ngModel)]="IBAN" />
+                  </clr-input-container>
+                </div>
+              </div>
+            </div>
+          </clr-wizard-page>
+          <clr-wizard-page>
+              <ng-template clrPageTitle>Upload receipt</ng-template>
+              <div class="clr-form-control mt-1 text-success" (click)="showUploader()">
+                <clr-icon shape="certificate" size="36"></clr-icon>
+              </div>
+          
+              <section class="mt-1">
+                <span class="mr-1">Browse</span>
+                <input type="file" ng2FileSelect [uploader]="uploader" />
+              </section>
+          
+              <div class="mt-2 mb-2">
+                  Total progress:
+                  <div class="progress" [ngStyle]="{ 'width': uploader.progress + '%' }">
+                      <div class="progress-bar" role="progressbar" ></div>
+                  </div>
+                  <hr>
+              </div>
+
+              <button
+                class="btn btn-primary mt-2"
+                [disabled]="!uploader.getNotUploadedItems().length"
+                (click)="uploader.uploadAll()"
+              >
+                Done
+              </button>
+            </clr-wizard-page>
+  </ng-container>
+
+
+
+
+
+
+
+
+  <!-- NON Scholar applicant -->
+
+
+  <ng-container *ngIf="showEticket">
+
+       <clr-wizard-page>
+            <ng-template clrPageTitle>E-receipt</ng-template>
+            <div class="pay">
+              <div class="card pl-1">
+                <div class="tick">
+                  <label
+                    ><clr-icon shape="e-check" size="16"></clr-icon> Applicant ID</label
+                  >
+                  <h5>{{ user.vit_id }}</h5>
+                </div>
+                <div>
+                    <div class="clr-input-wrapper">
+                      <label class="pr-1 text-primary"> Your reason of payment </label>
+                      <input
+                        type="text"
+                        name="reasonforpay"
+                        [(ngModel)]="reason"
+                        placeholder="Type your reason"
+                        class="clr-input"
+                      />
+                      <clr-icon
+                        class="clr-validate-icon"
+                        shape="exclamation-circle"
+                      ></clr-icon>
+                      <clr-control-helper
+                        >Enter your comment why you are making the paymnet
+                      </clr-control-helper>
+                    </div>
+                  </div>
+                  <div class="clr-control-container mt-1">
+                      <div class="clr-input-wrapper">
+                        <label class="pr-1 text-primary"> Amount you are paying </label>
+                        <input
+                          type="text"
+                          name="paying"
+                          [(ngModel)]="utilities"
+                          placeholder="amount in birr or eur"
+                          class="clr-input"
+                        />
+                        <clr-icon
+                          class="clr-validate-icon"
+                          shape="exclamation-circle"
+                        ></clr-icon>
+                        <clr-control-helper>
+                          <p
+                            style="padding: 0; margin: 0; font-size: 14px; color: red; font-weight: 700"
+                          >
+                            50% of the service /
+                            request price has to be paid for us <br />
+                            to process your request
+                          </p>
+                        </clr-control-helper>
+                      </div>
+                    </div>
+                <!-- <div class="tick">
+                  <label>
+                    <clr-icon shape="success-standard" size="16"></clr-icon> Total
+                    amount</label
+                  >
+                  <h5>{{ totalPay + "Birr" }}</h5>
+                </div>
+         -->
+                <clr-select-container style="margin:0; padding:0;">
+                  <label
+                    ><clr-icon shape="bank" size="16"></clr-icon> Bank Transfer</label
+                  >
+                  <select
+                    #bank
+                    clrSelect
+                    name="options"
+                    [(ngModel)]="ticket.bank"
+                    required
+                  >
+                    <option value="ETB">Commercial Bank of Ethiopia</option>
+                    <option value="EUR">International Bank Account</option>
+                  </select>
+                  <clr-control-error>Required!</clr-control-error>
+                </clr-select-container>
+        
+                <div *ngIf="bank.value === 'ETB'">
+                  <clr-control-helper>
+                    Payments made in Commercial Bank of Ethiopia you have to upload you
+                    receipt that shows you paid to the account number below
+                    successfully. Make sure to add your Applicant ID as a message when
+                    sending payment.
+                    <br />
+                    የኢትዮጵያ ንግድ ባንክ አካውንት ቁጥራችንን በመጠቅም (ታች ያለው) ፕሮሰሱን ማስጀመሪያ ክፍያዉን ከመለያ
+                    ቁጥራችሁ ጋር እንድ መልክት አብረው ይላኩ። የሪሲቱን ፎቶ አፕሎድ በማድረግ ያጠናቁ።
+                  </clr-control-helper>
+                  <clr-input-container>
+                    <label>
+                      <clr-icon shape="lock" size="16"></clr-icon> Account Number</label
+                    >
+                    <input clrInput readonly name="input1" [(ngModel)]="CBE" />
+                  </clr-input-container>
+                </div>
+                <div *ngIf="bank.value === 'EUR'">
+                  <clr-control-helper>
+                    For paymnets using IBAN number, no need for uploading receipt. But
+                    your Applicant ID should be commented.
+                  </clr-control-helper>
+                  <clr-input-container>
+                    <label>
+                      <clr-icon shape="lock" size="16"></clr-icon> Account Number</label
+                    >
+                    <input clrInput readonly name="input2" [(ngModel)]="IBAN" />
+                  </clr-input-container>
+                </div>
+              </div>
+            </div>
+          </clr-wizard-page>
+          <clr-wizard-page>
+              <ng-template clrPageTitle>Upload receipt</ng-template>
+              <div class="clr-form-control mt-1 text-success" (click)="showUploader()">
+                <clr-icon shape="certificate" size="36"></clr-icon>
+              </div>
+          
+              <section class="mt-1">
+                <span class="mr-1">Browse</span>
+                <input type="file" ng2FileSelect [uploader]="uploader" />
+              </section>
+          
+              <hr>
+              <div>
+                  Total progress:
+                  <div class="progress" [ngStyle]="{ 'width': uploader.progress + '%' }">
+                      <div class="progress-bar" role="progressbar" ></div>
+                  </div>
+                  <hr>
+              </div>
+              
+              <button
+                class="btn btn-primary mt-2"
+                [disabled]="!uploader.getNotUploadedItems().length"
+                (click)="uploader.uploadAll()"
+              >
+                Done
+              </button>
+            </clr-wizard-page>
+  </ng-container>
+
+
+
+
+
+</clr-wizard>

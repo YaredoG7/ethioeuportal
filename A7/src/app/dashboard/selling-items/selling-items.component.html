@@ -1,0 +1,122 @@
+<h3 style="margin:0; padding: 0;">
+  Available items to order for the next run (30th April, 2019)
+</h3>
+<span
+  (click)="pickup = true"
+  class="clr-subtext"
+  style="font-size: 14px; font-weight: 700; color: rgb(8, 172, 62); text-decoration: underline; cursor: pointer;"
+  >Pick up points</span
+>
+<hr />
+
+<div class="clr-row">
+  <ng-container *ngFor="let prod of products">
+    <div class="clr-col-lg-4 clr-col-12">
+      <a class="card clickable" style="height: 35vh;">
+        <div class="card-block" style="padding: 0; margin: 0;">
+          <h5 style="padding: 0; margin: 0;">{{ prod.name }}</h5>
+        </div>
+
+        <div class="card-block">
+          Name {{ prod.name }}, Available now {{ prod.available }}, In-store
+          {{ prod.left }}, Desc: {{ prod.description }}
+          <div class="clr-row">
+            <div class="clr-col-4" *ngFor="let img of prod?.img">
+              <img
+                src="{{ img }}"
+                alt="Item to be ordered"
+                style="height: 15vh; width: 9vw"
+              />
+            </div>
+            <section class="text-primary" style="padding: 0; margin: 0;">
+              <h4 style="padding: 0; margin: 0;">Price: {{ prod.price }} Birr</h4>
+            </section>
+          </div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+
+  <ng-container >
+    <!--   <clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'sm'">
+                    ...
+           </clr-modal> -->
+    <clr-modal [(clrModalOpen)]="basic">
+      <p class="modal-title">
+        You have selected 3 countries, which is the max limit you can apply up
+        to
+      </p>
+      <div class="modal-body">
+        <h5 class="text-primary">
+          Do you want to link the selected countries to your profile?
+        </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="basic = false">
+          Yes
+        </button>
+        <button type="button" class="btn btn-outline" (click)="basic = false">
+          No
+        </button>
+      </div>
+    </clr-modal>
+  </ng-container>
+</div>
+<clr-modal [(clrModalOpen)]="pickup" [clrModalSize]="'lg'">
+        <h5 class="modal-title">For ordered items you can get your items in the bellow locations, on the specified date.</h5>
+        <div class="modal-body">
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th>City</th>
+                            <th>Is Avaialble</th>
+                            <th>Address</th>
+                            <th>Pick up date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Addis Ababa</td>
+                            <td>Yes</td>
+                            <td>Flaming pharmaceutical (multiple locations)</td>
+                            <td>1st of March 2019</td>
+                          </tr>
+                          <tr>
+                            <td>Bahirdar</td>
+                            <td>Yes</td>
+                            <td>Ours cafe</td>
+                            <td>1st of March 2019</td>
+                          </tr>
+                          <tr>
+                            <td>Hawassa</td>
+                            <td>Yes</td>
+                            <td>Lake View Hotel</td>
+                            <td>1st of March 2019</td>
+                          </tr>
+                          <tr>
+                            <td>Adama</td>
+                            <td>Yes</td>
+                            <td>Rift valley Hotel</td>
+                            <td>1st of March 2019</td>
+                          </tr>
+                          <tr>
+                            <td>Mekelle</td>
+                            <td>Yes</td>
+                            <td>Ethiopia Hotel</td>
+                            <td>1st of March 2019</td>
+                          </tr>
+                  
+                          <tr>
+                            <td>Gonder</td>
+                            <td>Yes</td>
+                            <td>Piassa Hotel</td>
+                            <td>1st of March 2019</td>
+                          </tr>
+                        </tbody>
+                      </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="pickup = false">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="pickup = false">Ok</button>
+        </div>
+    </clr-modal>

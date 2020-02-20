@@ -1,0 +1,206 @@
+
+
+  <div class="clr-row">
+        <div class="clr-col-6">
+                <section >
+                        <div class="clr-row">
+                                <div class="clr-col-4 eid">
+                                    <clr-icon shape="router" class="has-alert" size="64"></clr-icon>
+                                    <a (click)="opened = true">More to explore </a>
+                                </div>
+                    
+                                <clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false" >
+                                    <p class="modal-title">Select an option and use the unique id to send a message to Account Holder</p>
+                                    <div class="modal-body">
+                                      
+                                        <table class="table table-noborder" style="background: linear-gradient(to right, #feac5e, #c779d0, #4bc0c8); ">
+                                            <thead>
+                                                <tr>
+                                                    <th class="left text-white">Item</th>
+                                                    <th class="text-white">Type</th>
+                                                    <th class="right text-white">Unique Id</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody  >
+                                                <tr >
+                                                    <td class="left">I have running business</td>
+                                                    <td>consultation</td>
+                                                    <td>HCE001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">I have business idea </td>
+                                                    <td>consultation</td>
+                                                    <td>HCE002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">I have finance </td>
+                                                    <td>Resources in the EU</td>
+                                                    <td>HCE003</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">New app </td>
+                                                    <td> Tech </td>
+                                                    <td>HCE004</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">New Mobile app </td>
+                                                    <td> Tech </td>
+                                                    <td>HCE004</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">New website </td>
+                                                    <td> Tech </td>
+                                                    <td>HCE005</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left">New System </td>
+                                                    <td> Sofware </td>
+                                                    <td>HCE006</td>
+                                                </tr>
+                                              <tr>
+                                                  <td class="left">New System </td>
+                                                  <td> Automatic Tools </td>
+                                                  <td>HCE007</td>
+                                              </tr>
+                                 
+                                 
+                                 
+                                            </tbody>
+                                        </table>
+                                  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" (click)="opened = false">
+                                          Close
+                                        </button>
+                                    </div>
+                                </clr-modal>
+                    
+                    
+                    
+                                <div class="clr-col-4 eid">
+                                 <clr-icon size="64" shape="slider" class="is-solid text-primary"></clr-icon>
+                                 <a [routerLink]="['/dashboard/account', user.vit_id]" >Settings </a>
+                                </div>
+                                <div class="clr-col-4 eid">
+                                    <clr-icon size="64" shape="shopping-bag" class="is-solid text-primary"></clr-icon>
+                                    <a routerLink="./order_items">Order from EU </a>
+                                </div>
+                        
+                            </div>
+                        
+                        <div class="clr-row">
+                            <div class="clr-col-4 eid">
+                                <clr-icon size="64" shape="euro" class="is-solid text-primary"></clr-icon>
+                                <a>Euro Zone </a>
+                            </div>
+                            <div class="clr-col-4 eid">
+                                <clr-icon size="64" shape="shield-check" class="is-solid text-success"></clr-icon>
+                             <a>Protection and Safety </a>
+                            </div>
+                            <div class="clr-col-4 eid">
+                            <clr-icon size="64" shape="airplane" class="is-solid text-info"></clr-icon>
+                                <!-- <a>Stay Connected </a> -->
+                                <a>Travel options </a>
+                            </div>
+                      
+                        </div>
+                    
+                          <div class="clr-row">
+                              <div class="clr-col-4 eid">
+                            <clr-icon size="64" shape="heart" class="is-solid text-danger"></clr-icon>
+                            <a>hahu computers <br> ሀሁ ኮምፒውተርስ </a>
+                              </div>
+                              <div class="clr-col-4 eid">
+                                  <clr-icon size="64" shape="talk-bubbles" class="is-solid text-primary"></clr-icon>
+                               <a>Message Us</a>
+                              </div>
+                              <div class="clr-col-4 eid" *ngIf="role === 'HAHUADMIN'">
+                                  <clr-icon size="64" shape="users" class="has-alert is-solid text-primary" ></clr-icon>
+                                  <a>Portal users</a>
+                              </div>
+                            
+                          </div>
+            
+                </section>
+            </div>
+            <div class="clr-col-6">
+                    <section >
+                            <p style="font-weight: 900; font-family:'Times New Roman', Times, serif; font-size: 26px;"><clr-icon shape="flag" size="36" class="text-primary"></clr-icon> Scholarship Leader's Board</p>
+                            <hr />
+                            <table class="table  table-noborder">
+                              <thead>
+                                <tr>
+                                    <th class="left text-white">#</th>
+                                  <th class="left text-white">Name</th>
+                                  <th  class="text-white">From</th>
+                                  <th  class="text-white">Points</th>
+                                  <th class=" text-white">Rating</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let leader of leaders; let i=index">
+                                  <td class="left">{{i + 1}}</td>
+                                  <td >{{leader.name}}</td>
+                                  <td>{{leader.from}}</td>
+                                  <td>{{leader.points}}</td>
+                                  <td>
+                                   
+                                    <ng-template #t let-fill="fill">
+                                        <span class="star" [class.full]="fill === 100">
+                                          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                        </span>
+                                      </ng-template>
+                                      
+                                      <ngb-rating [(rate)]="leader.stars" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                
+                            
+                            <p style=" font-family:'Times New Roman', Times, serif; font-size: 26px;"> <clr-icon shape="tasks" class="text-primary" size="36"></clr-icon> Reminders</p>
+                            
+                            <hr>
+                
+                            <ul class="list">
+                                <li><clr-icon shape="help-info" size="16"></clr-icon> Number of applicant we are accepting: <span class="ish"> 100 Applicants </span></li>
+                                <li><clr-icon shape="help-info" size="16"></clr-icon> Scholarship Deadline: <span class="ish"> 1st of May, 2019 </span></li>
+                                <li><clr-icon shape="help-info" size="16"></clr-icon> Ordered Items will be delivered until: <span class="ish"> 30th of May, 2019 </span></li>
+                            </ul>
+                                
+                          </section>
+            </div>
+
+</div>
+
+<!-- <div class="clr-row mt-1">
+
+    <div class="clr-col-3 eid">
+        <clr-icon size="64" shape="e-check"></clr-icon>
+        <section>Your e-Id: </section>
+    </div>
+    <div class="clr-col-3 eid">
+     <clr-icon size="64" shape="slider"></clr-icon>
+     <section>Settings </section>
+    </div>
+    <div class="clr-col-3 eid">
+        <clr-icon size="64" shape="shopping-bag"></clr-icon>
+        <section>Order from EU </section>
+    </div>
+    <div class="clr-col-3">
+        <clr-icon size="64" shape="airplane"></clr-icon>
+        <section>Travel options </section>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+

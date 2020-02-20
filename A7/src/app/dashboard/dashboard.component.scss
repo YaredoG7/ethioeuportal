@@ -1,0 +1,92 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+
+
+.header-actions {
+    display: flex;
+    align-content: flex-end;
+    > section {
+        margin-top: 2.6vh;
+        transform: scale(2)
+    }
+    transition: color .4s;
+    cursor: pointer;
+
+    &:hover {
+        color: #06f873;
+    }
+}
+.sidenav {
+    max-width: 25vw;;
+    img {
+       height: 15vh;
+    
+    }
+
+    h4 {
+        font-size: 18px;
+        color: #c6c6c6;
+        font-weight: 700;
+        margin-bottom: 10px;
+       
+    }
+
+    // .power {
+    //    section {
+    //     font-size: 13px;
+    //     // font-weight: 700;
+    //     font-family: 'Times New Roman', Times, serif;
+    //    }
+    //     color: rgb(240, 240, 240);
+    //     width: 100%;
+    //     background: #232526;  /* fallback for old browsers */
+    //     background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    //     background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+    // }
+
+
+
+
+
+}
+
+
+.nav-group {
+    // position: relative;
+    left: -20px;
+
+    label {
+        font-size: 12px;
+    }
+
+    li {
+        font-size: 12px;
+    }
+    
+}
+.active {
+    
+       li {
+        color: #000;
+       }
+    
+}
+
+.homeBtn {
+    cursor: pointer;
+    transition: color .2s;
+    &:hover {
+        color: rgb(2, 198, 247);
+    }
+}
+
+.alert {
+
+    width: auto;
+    height: auto;
+}
+
+
+

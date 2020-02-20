@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Gilda+Display&display=swap');
+
+*{
+    
+    
+}
+.login-wrapper {
+    background: url('/assets/img_1.jpg')  no-repeat center center/cover;
+}
+
+
+label {
+    color: #fff;
+}
+
+.sections {
+
+   
+  
+    display: flex;
+    flex-direction: column;
+   a{
+       align-self: center;
+       cursor: pointer;
+        transition: color .2s;
+       &:hover {
+           color: rgb(77, 196, 21);
+       }
+   }
+}
+
+
+.note {
+ font-size: 14px;
+}

@@ -1,0 +1,38 @@
+
+<div class="clr-row">
+      
+    <div class="clr-col">
+        Countries
+            <clr-datagrid>
+                    <clr-dg-column>Code</clr-dg-column>
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Available <br>
+                    (scholarships)</clr-dg-column>
+                    <clr-dg-column>Available
+                        <br> (universities)
+                    </clr-dg-column>
+                    <clr-dg-column>Application <br>
+                    (status) </clr-dg-column>
+                    <clr-dg-column>Comment <br>
+                        (star) </clr-dg-column>
+                
+                    <clr-dg-row *ngFor="let country of countries">
+                        <clr-dg-cell class="text-primary"><a [routerLink]="['/dashboard/admin_add_countries', country.code]" style="text-decoration: underline; font-weight: 700;">{{country.code}}</a></clr-dg-cell>
+                        <clr-dg-cell >{{country.name}}</clr-dg-cell>
+                        <clr-dg-cell style="text-decoration: underline; font-weight: 700;"><a [routerLink]="['/dashboard/admin_add_countries', country.code]" class="text-primary">{{country.aval_schlr}}</a></clr-dg-cell>
+                        <clr-dg-cell>{{country.aval_uni}}</clr-dg-cell>
+                        <clr-dg-cell>{{country.app_status}}</clr-dg-cell>
+                        <clr-dg-cell>{{country.comment.comment}}
+                        </clr-dg-cell>
+
+                    </clr-dg-row>
+                
+                    <clr-dg-footer>{{countries.length}} countries</clr-dg-footer>
+                </clr-datagrid>
+                
+             
+    </div>
+    <div class="clr-col-4">
+   
+        </div>
+</div>

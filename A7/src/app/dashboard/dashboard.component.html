@@ -1,0 +1,137 @@
+<div class="main-container">
+  <header class="header header-6">
+    <div class="branding">
+      <a class="nav-link">
+        <clr-icon class="text-primary" shape="atom"></clr-icon>
+        <span class="title">ETHIO-EU PORTAL</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <section routerLink="./message" style="font-size: 28px" class="mr-1">
+        <clr-icon
+          shape="talk-bubbles"
+          [ngClass]="hasMsg ? 'has-badge' : ''"
+        ></clr-icon>
+        <!--  -->
+      </section>
+      <clr-dropdown>
+        <button
+          class="nav-text"
+          clrDropdownTrigger
+          aria-label="open user profile"
+        >
+          {{ user.vit_id }}
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a clrDropdownItem [routerLink]="['/dashboard/account', user.vit_id]"
+            >Account Setting</a
+          >
+          <a (click)="logOut()" clrDropdownItem>Log out</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </header>
+  <div class="content-container">
+    <clr-vertical-nav
+      [clrVerticalNavCollapsible]="true"
+      [(clrVerticalNavCollapsed)]="collapsed"
+    >
+      <a clrVerticalNavLink routerLink="/dashboard" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+        Home
+      </a>
+
+      <!-- Scholar students -->
+      <ng-container *ngIf="role === 'SCLR'">
+        <a
+          clrVerticalNavLink
+          routerLink="./available_countries"
+          routerLinkActive="active"
+        >
+          <clr-icon clrVerticalNavIcon shape="crosshairs"></clr-icon>
+          Select EU Countries
+        </a>
+        <a
+          clrVerticalNavLink
+          routerLink="./documents"
+          routerLinkActive="active"
+        >
+          <clr-icon clrVerticalNavIcon shape="upload"></clr-icon>
+          Upload Documents
+        </a>
+
+        <a
+          clrVerticalNavLink
+          routerLink="./payment/sclr"
+          routerLinkActive="active"
+        >
+          <clr-icon clrVerticalNavIcon shape="dollar-bill"></clr-icon>
+          Payment Status
+        </a>
+      </ng-container>
+      <!-- Admin -->
+      <ng-container *ngIf="role === 'HAHUADMIN'">
+        <a
+          clrVerticalNavLink
+          routerLink="./admin_add_countries/register"
+          routerLinkActive="active"
+        >
+          <clr-icon clrVerticalNavIcon shape="import"></clr-icon>
+          Add Country
+        </a>
+        <a
+          clrVerticalNavLink
+          routerLink="./admin_countries_list"
+          routerLinkActive="active"
+        >
+          <clr-icon clrVerticalNavIcon shape="number-list"></clr-icon>
+          Countries
+        </a>
+        <a
+          clrVerticalNavLink
+          routerLink="./admin_list_applicant"
+          routerLinkActive="active"
+        >
+          <clr-icon
+            clrVerticalNavIcon
+            shape="users"
+            class="has-alert is-solid"
+          ></clr-icon>
+          Applicants
+        </a>
+      </ng-container>
+      <!-- Other users -->
+      <a
+        clrVerticalNavLink
+        routerLink="./order_items"
+        routerLinkActive="active"
+      >
+        <clr-icon clrVerticalNavIcon shape="nvme"></clr-icon>
+        Order (EU Store)
+      </a>
+      <!-- Other users -->
+      <a clrVerticalNavLink>
+        <clr-icon clrVerticalNavIcon shape="nvme"></clr-icon>
+        Order (ET Store)
+      </a>
+      <a
+        clrVerticalNavLink
+        routerLink="./payment/pay_for_item"
+        routerLinkActive="active"
+      >
+        <clr-icon clrVerticalNavIcon shape="dollar-bill"></clr-icon>
+        Payments
+      </a>
+      <a clrVerticalNavLink routerLink="./about" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="atom"></clr-icon>
+        About
+      </a>
+
+
+    </clr-vertical-nav>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

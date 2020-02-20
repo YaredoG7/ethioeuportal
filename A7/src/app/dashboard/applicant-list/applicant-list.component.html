@@ -1,0 +1,38 @@
+
+<div class="clr-row">
+      
+        <div class="clr-col">
+                <clr-datagrid>
+                        <clr-dg-column>Applicant ID</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Contact</clr-dg-column>
+                        <clr-dg-column>Has Paid
+                            <br> (status)
+                        </clr-dg-column>
+                        <clr-dg-column>Application <br>
+                        (status) </clr-dg-column>
+                        <clr-dg-column>Rating <br>
+                            (star) </clr-dg-column>
+
+                        <clr-dg-column>Uploaded documents
+                            </clr-dg-column>
+                    
+                        <clr-dg-row *ngFor="let user of users; let i=index;">
+                            <clr-dg-cell class="text-primary"><a [routerLink]="['/dashboard/account', user.vit_id]" class="text-primary">{{user.vit_id}}</a></clr-dg-cell>
+                            <clr-dg-cell>{{user.firstname + ' ' + user.lastname}}</clr-dg-cell>
+                            <clr-dg-cell>{{user.email}}</clr-dg-cell>
+                            <clr-dg-cell>{{user.has_paid}}</clr-dg-cell>
+                            <clr-dg-cell>{{user.app_status}}</clr-dg-cell>
+                            <clr-dg-cell>{{user.star}}</clr-dg-cell>
+
+                        </clr-dg-row>
+                    
+                        <clr-dg-footer>{{users.length}} users</clr-dg-footer>
+                    </clr-datagrid>
+                    
+                    
+        </div>
+        <div class="clr-col-5">
+           <!-- <app-account></app-account> -->
+            </div>
+    </div>

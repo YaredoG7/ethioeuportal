@@ -1,0 +1,123 @@
+<h3 style="margin:0; padding: 0;">Register EU nations with scholarship possibilities</h3>
+<hr>
+  <div class="clr-row">
+      <div class="clr-col-3">
+          <section>
+              <clr-select-container >
+                  <label>Select Name</label>
+                    <select clrSelect name="type"  (change)="selectedItem($event)" name="pay" style="max-width: 15vw;" >
+                        <option *ngFor="let eu of countries">{{eu.name || 'No Country Selected'}}</option>
+                    </select>
+                </clr-select-container>
+            <clr-input-container>
+                <label>Contry Code</label>
+                <input clrInput required   type="text" placeholder="NL" [(ngModel)]="country.code"  name="barcoded"  />
+              </clr-input-container>
+              <clr-input-container>
+                <label>Capital </label>
+                <input clrInput required type="text" placeholder="City" [(ngModel)]="country.capital" name="prodne"/>
+                
+              </clr-input-container>
+                <clr-input-container>
+                  <label>Currency</label>
+                  <input clrInput required type="text" placeholder="$" [(ngModel)]="country.currency" name="curr" />
+                </clr-input-container>
+                <clr-input-container>
+                  <label>Contry Name</label>
+                  <input clrInput required type="text" placeholder="Nation name"  [(ngModel)]="country.long_name" name="count_name" />
+                </clr-input-container>
+
+                <button class="btn btn-primary mt-1" (click)="regiOrUp()
+                ">{{isEditing ? 'Update' : 'Register'}}</button>
+          <button class="btn btn-warning mt-1" (click)="shwCnf = true">Delete</button>
+        </section>
+      </div>
+
+      <clr-modal [(clrModalOpen)]="shwCnf" [clrModalClosable]="false">
+          <h3 class="modal-title">Are you sure ? </h3>
+          <div class="modal-body">
+              <p>You will delete a record in the database </p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="deleteEucountry(true)">
+                  Confirm
+              </button>
+              <button type="button" class="btn btn-outline" (click)="shwCnf = false">
+                  Nope
+              </button>
+          </div>
+      </clr-modal>
+
+
+      <div class="clr-col-5">
+          <section>
+              <clr-input-container>
+                <label>University </label>
+                <input clrInput required type="text" class="mr-1" placeholder="City" [(ngModel)]="course.uni" name="unicity"/>
+                <input clrInput required type="text" placeholder="address" [(ngModel)]="course.address" name="unistreet"/>
+              </clr-input-container>
+                <clr-input-container>
+                  <label>Course & Tution 1</label>
+                  <input clrInput required  type="text" class="mr-1" placeholder="Course name" [(ngModel)]="course.name_1"  name="barcoded1"  />
+                  <input clrInput required  type="text" placeholder="Tution fee / Semester" [(ngModel)]="course.tution_1"  name="barcoded2"  />
+                </clr-input-container>
+              <clr-input-container>
+                  <label>Course & Tutio 2</label>
+                  <input clrInput required  type="text" class="mr-1" placeholder="Course name" [(ngModel)]="course.name_2"  name="barcoded3"  />
+                  <input clrInput required  type="text" placeholder="Tution fee / Semester" [(ngModel)]="course.tution_2"  name="barcoded4"  />
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Course & Tution 3</label>
+                    <input clrInput required  type="text" class="mr-1" placeholder="Course name" [(ngModel)]="course.name_3"  name="barcoded5"  />
+                    <input clrInput required  type="text" placeholder="Tution fee / Semester" [(ngModel)]="course.tution_3"  name="barcoded6"  />
+                  </clr-input-container>
+                
+       
+         
+
+        </section>
+      </div>
+      <div class="clr-col-4">
+          <section>
+            <clr-input-container>
+                <label>Accomdation Cost (approx.)</label>
+                <input clrInput required placeholder="Student Dormitories" type="text" [(ngModel)]="cost.house"  name="barcoded"  />
+              </clr-input-container>
+              <clr-input-container>
+                <label>Flight Cost</label>
+                <input clrInput required type="text" placeholder="ADD - UNI" [(ngModel)]="cost.flight" name="prodne"/>
+                
+              </clr-input-container>
+                <clr-input-container>
+                  <label>Application Cost</label>
+                  <input clrInput required type="text" placeholder="Application fee (UNI)" [(ngModel)]="cost.app" name="curr" />
+                </clr-input-container>
+         
+              <clr-input-container>
+                  <label>Avaialble Scholarships</label>
+                  <input clrInput required type="number" placeholder="totally in the country" [(ngModel)]="country.aval_schlr" name="curr" />
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Number of Universities</label>
+                    <input clrInput required type="number" placeholder="totally in the country" [(ngModel)]="country.aval_uni" name="curr" />
+                  </clr-input-container>
+          
+        </section>
+           <section>
+            <p>Country Flag</p>
+            <img style="max-height:70px; max-width:70px;" src="{{country.flag}}" alt="">
+          </section>
+          <div class="clr-form-control">
+              <label for="vertical-textarea-basic" class="clr-control-label">Additional Comment</label>
+              <div class="clr-control-container">
+                <div class="clr-textarea-wrapper">
+                  <textarea id="vertical-textarea-basic" [(ngModel)]="course.comment" name="cmt" placeholder="Reminder / Comment / Note" class="clr-textarea"></textarea>
+                  <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="clr-subtext">Put important note, if there is any.</span>
+              </div>
+            </div>
+      </div>
+
+
+  </div>

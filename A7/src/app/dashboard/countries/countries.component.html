@@ -1,0 +1,48 @@
+
+<h3 style="margin:0; padding: 0;">Your pick from available scholarship countries list (2020/21) </h3>
+<hr>
+
+<div class="clr-row">
+
+    <ng-container *ngFor="let cntry of countries">
+            <div class="clr-col-lg-3 clr-col-12">
+                    <a class="card clickable">
+                        <div class="card-block">
+                            <span >
+                                <img style="max-height:70px; max-width:70px;" src="{{cntry.flag}}">
+                            </span>
+                        </div>
+                        <div class="card-block">
+                            <p><clr-icon shape="map-marker"></clr-icon> Name {{cntry.name}}</p>
+                            <p><clr-icon shape="building" class="has-alert"></clr-icon> Capital {{cntry.capital}}</p>
+                            <p><clr-icon shape="users"></clr-icon> Available Scholarships {{cntry.aval_schlr}}</p>
+                            <p><clr-icon shape="bank"></clr-icon> Available Universities {{cntry.aval_uni}}</p>
+                            <p><clr-icon shape="dollar-bill"></clr-icon> Currency: {{cntry.currency}}</p>
+                        </div>
+                        <div class="card-block">
+                            <button class="card-text btn btn-outline-primary" (click)="countrySelected(cntry.code)">
+                                Select
+                            </button>
+                        </div>
+                    </a>
+                </div>
+    </ng-container >
+
+    <ng-container (onmousemove)="checkCntrLength()" >
+          <!--   <clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'sm'">
+                    ...
+           </clr-modal> -->
+           <clr-modal [(clrModalOpen)]="basic">
+                <p class="modal-title">You have selected 3 countries, which is the max limit you can apply up to</p>
+                <div class="modal-body">
+                    <h5 class="text-primary">Do you want to link the selected countries to your profile? </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="saveCntry()">Yes</button>
+                    <button type="button" class="btn btn-outline" (click)="basic = false">No</button>
+                </div>
+            </clr-modal>
+    </ng-container>
+
+</div>
+

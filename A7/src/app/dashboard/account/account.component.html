@@ -1,0 +1,416 @@
+<div class="card ">
+  <div>
+    <h3 class="text-primary">
+      <clr-icon shape="id-badge" size="64"></clr-icon> {{ fullname }}
+    </h3>
+  </div>
+  <hr />
+
+  <div class="body">
+    <div class="left">
+      <div class="clr-form-control pl-1">
+        <div for="example" class="clr-control-label text-primary">
+          <clr-icon size="36" shape="envelope"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              type="text"
+              id="example"
+              [(ngModel)]="user.email"
+              [(ngModel)]="user.email"
+              placeholder="Email"
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper>Member Email</clr-control-helper>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control pl-1">
+        <div for="example" class="clr-control-label text-primary">
+          <clr-icon size="36" shape="e-check"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              type="text"
+              id="example"
+              [(ngModel)]="user.vit_id"
+              placeholder="ET-EU Id"
+              readonly
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper>E-Id number</clr-control-helper>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control pl-1">
+        <div for="example" class="clr-control-label text-primary">
+          <clr-icon size="36" shape="book"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              type="text"
+              id="example"
+              [(ngModel)]="user.education_level"
+              placeholder="Education"
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper>Education level </clr-control-helper>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control pl-1">
+        <div for="example" class="clr-control-label text-primary">
+          <clr-icon size="36" shape="home"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              type="text"
+              id="example"
+              [(ngModel)]="address"
+              placeholder="Address"
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper>Address, city or country </clr-control-helper>
+          </div>
+        </div>
+      </div>
+
+        <div class="clr-form-control pl-1 ">
+            <clr-select-container>
+              <label class="text-primary">Account Type</label>
+              <select clrSelect name="type" [(ngModel)]="user.role" [disabled]="role !== 'HAHUADMIN'">
+                  <option value="SCLR">Scholarship Applicant</option>
+                  <option value="GST">Guest</option>
+                  <option value="CLIT">Company</option>
+                   <option value="CPA">CPA</option>
+                   <option value="HAHUADMIN">hahu admin </option>
+                </select>
+            </clr-select-container>
+          </div>
+
+      <section>
+
+      </section>
+    </div>
+    <div class="right">
+          <div class="clr-form-control pl-1 " style="margin-top: -2
+          px;">
+                <clr-select-container>
+                  <label class="text-primary ">Has paid application fee ? </label>
+                  <select
+                    clrSelect
+                    name="type"
+                    [disabled]="role !== 'HAHUADMIN'"
+                    [(ngModel)]="user.has_paid"
+                    name="pay"
+                  >
+                  <option value="false">No</option>
+                  <option value="true">Yes</option>
+                  </select>
+                </clr-select-container>
+                <clr-control-helper
+                >  <label class="text-primary"> <clr-icon size="16" shape="dollar-bill"></clr-icon></label> Has paid application fee ? Yes or No..</clr-control-helper
+              >
+              </div>
+
+      <div class="clr-form-control pl-1 " style="margin-top: -5px;">
+            <clr-select-container>
+              <label class="text-primary ">Can Pay in Euro ?</label>
+              <select
+                clrSelect
+                [disabled]="role !== 'HAHUADMIN'"
+                name="type"
+                [(ngModel)]="user.can_pay_eur"
+                name="pay"
+              >
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+              </select>
+            </clr-select-container>
+            <clr-control-helper
+            >  <label class="text-primary"> <clr-icon size="16" shape="euro"></clr-icon></label> Have to pay at least the first semester.</clr-control-helper
+          >
+          </div>
+      <div class="clr-form-control pl-1">
+        <div for="example" class="clr-control-label text-primary">
+          <clr-icon size="36" shape="wallet"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              type="text"
+              id="example"
+              [(ngModel)]="user.metadata"
+              placeholder="Passport number"
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper>Passport number? </clr-control-helper>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control pl-1 ">
+        <clr-select-container>
+          <label class="text-primary">Application status</label>
+          <select
+            clrSelect
+            name="type"
+            [disabled]="role !== 'HAHUADMIN'"
+            [(ngModel)]="user.app_status"
+            name="pay"
+          >
+            <option>Received</option>
+            <option>Document Check</option>
+            <option>Approved</option>
+            <option>Submitted</option>
+            <option>Rejected</option>
+            <option>Accepted</option>
+          </select>
+        </clr-select-container>
+      </div>
+    </div>
+    <div class="right">
+      <div class="clr-form-control pr-2">
+        <div for="example" class="clr-control-label text-primary">
+          <clr-icon size="36" shape="paperclip"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <button
+              style="cursor: pointer; text-decoration: underline;"
+              class="text-primary btn btn-outline-primary"
+              [disabled]="role !== 'HAHUADMIN'"
+              (click)="dowloadDoc(user.vit_id)"
+              >Download Docs</button
+            >
+            <clr-control-helper
+              >Check out uploaded docs by memeber</clr-control-helper
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="clr-form-control pt-1">
+          <div for="example" class="clr-control-label text-primary">
+            <clr-icon size="36" shape="slider"></clr-icon>
+          </div>
+          <div class="clr-control-container">
+            <div class="clr-input-wrapper">
+                <a
+                (click)="opened = true"
+                style="cursor: pointer; text-decoration: underline;"
+                class="text-primary mt-1"
+                >Calculate points</a
+              >
+              <clr-icon
+                class="clr-validate-icon"
+                shape="exclamation-circle"
+              ></clr-icon>
+              <clr-control-helper>Calculate points</clr-control-helper>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- MODAL HERE -->
+
+      <clr-modal [(clrModalOpen)]="opened" [clrModalSize]="'sm'">
+        <
+        <div class="modal-body">
+          <div class="clr-form-control">
+            <div
+              for="example"
+              class="clr-control-label text-primary"
+              style=" width: 100%; display: flex; justify-content: space-between; align-items: center;"
+            >
+              <clr-select-container>
+                <select
+                  #upl
+                  clrSelect
+                  name="type"
+                  [(ngModel)]="uploaded"
+                >
+                  <option  value="0">No</option>
+                  <option value="100">Yes</option>
+                  <option value="45">Half-way</option>
+                 
+                </select>
+              </clr-select-container>
+              <section style="margin-top: 20px;">
+                <clr-icon size="16" shape="bullseye"></clr-icon>
+              </section>
+            </div>
+            <clr-control-helper
+              >Member has uploaded all necessary documents ?
+            </clr-control-helper>
+          </div>
+          <div class="clr-form-control">
+            <div
+              for="example"
+              class="clr-control-label text-primary"
+              style=" width: 100%; display: flex; justify-content: space-between; align-items: center;"
+            >
+              <clr-select-container>
+                <select
+                  #upl2
+                  clrSelect
+                  name="type"
+                  [(ngModel)]="uploaded1"
+                >
+                <option value="0">No</option>
+                  <option value="10">Yes</option>
+                </select>
+              </clr-select-container>
+              <section style="margin-top: 20px;">
+                <clr-icon size="16" shape="note"></clr-icon>
+                <!-- <span class="ml-1">{{ points || 0 }} pts</span> -->
+              </section>
+            </div>
+            <clr-control-helper
+              >Extra motivation letter ?
+            </clr-control-helper>
+          </div>
+          <div class="clr-form-control">
+            <div
+              for="example"
+              class="clr-control-label text-primary"
+              style=" width: 100%; display: flex; justify-content: space-between; align-items: center;"
+            >
+              <clr-select-container>
+                <select
+                  #upl3
+                  clrSelect
+                  name="type"
+                  [(ngModel)]="uploaded2"
+                >
+                <option value="0">No</option>
+                <option value="15">Yes</option>
+                </select>
+              </clr-select-container>
+              <section style="margin-top: 20px;">
+                <clr-icon size="16" shape="add-text"></clr-icon>
+              </section>
+            </div>
+            <clr-control-helper
+              >Member has selected extra university ?
+            </clr-control-helper>
+          </div>
+          <div class="clr-form-control">
+                <button class="btn btn-outline-primary btn-sm" (click)="calcualtePoits()">Calulate</button>
+          </div>
+
+          <hr>
+         <section>
+           Total points: <span class="ml-1" style="font-weight: 700; text-decoration: underline;">{{ points || 0 }} pts</span>
+         </section>
+         <hr>
+         <div class="clr-form-control">
+                <button class="btn btn-outline-success btn-sm" (click)="opened = false">Done</button>
+          </div>
+
+        </div>
+      </clr-modal>
+
+      <div  class="clr-form-control pr-2">
+        <div for="example" class="clr-control-label text-warning">
+          <clr-icon size="36" shape="star"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+               readonly
+              type="text"
+              id="example"
+              [(ngModel)]="user.star"
+              placeholder="Stars"
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper
+              >Rating per uploaded document and payment</clr-control-helper
+            >
+          </div>
+        </div>
+      </div>
+      <div  class="clr-form-control pr-2">
+        <div for="example" class="clr-control-label text-warning">
+          <clr-icon size="36" shape="certificate"></clr-icon>
+        </div>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              type="text"
+              [disabled]="role !== 'HAHUADMIN'"
+              name="example2"
+              [(ngModel)]="user.certificate"
+              placeholder="certificate"
+              class="clr-input"
+            />
+            <clr-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></clr-icon>
+            <clr-control-helper>Awarded certificate </clr-control-helper>
+          </div>
+        </div>
+      </div>
+
+      <div class="clr-form-control pr-2 mt-2">
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <div class="clr-input-wrapper">
+              <button class="btn btn-outline" (click)="updateUser()">
+                Update
+              </button>
+              <button [disabled]="role !== 'HAHUADMIN'" class="btn btn-danger-outline"  (click)="cnfrm = true">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <clr-modal [(clrModalOpen)]="cnfrm" [clrModalClosable]="false">
+          <h3 class="modal-title">Are you sure ? </h3>
+          <div class="modal-body">
+              <p>You will delete a record in the database </p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="deleteMember(true)">
+                  Confirm
+              </button>
+              <button type="button" class="btn btn-outline" (click)="cnfrm = false">
+                  Nope
+              </button>
+          </div>
+      </clr-modal>
+
+
+    </div>
+  </div>
+</div>
